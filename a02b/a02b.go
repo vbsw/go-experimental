@@ -24,7 +24,7 @@
 // For more information, please refer to <http://unlicense.org>
 
 // Package a02b is a copy of a02a interfaces.
-package e02b
+package a02b
 
 // Driver is the used interface.
 type Driver interface {
