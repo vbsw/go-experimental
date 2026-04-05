@@ -38,7 +38,7 @@ This package needs Cgo to compile and Cgo needs a C compiler.
 For Cgo install GCC, or configure another compiler like clang (see <https://stackoverflow.com/questions/44856124/can-i-change-default-compiler-used-by-cgo>).
 
 **Windows**  
-For Cgo install tdm-gcc (<https://jmeubank.github.io/tdm-gcc/>), or some other with Go ABI compatible compiler like MinGW-w64.
+For Cgo install tdm-gcc (<https://jmeubank.github.io/tdm-gcc/>), or some other Go ABI compatible compiler like MinGW-w64.
 
 ## References
 - https://go.dev/doc/install
