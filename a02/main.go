@@ -23,7 +23,7 @@
 //
 // For more information, please refer to <http://unlicense.org>
 
-// Package main tries to combine a02a and a02b, but fails not compile.
+// Package main tries to combine a02a and a02b, but fails to compile.
 package main
 
 import (

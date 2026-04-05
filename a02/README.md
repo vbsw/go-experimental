@@ -3,7 +3,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/vbsw/go-experimental/a02.svg)](https://pkg.go.dev/github.com/vbsw/go-experimental/a02) [![Go Report Card](https://goreportcard.com/badge/github.com/vbsw/go-experimental/a02)](https://goreportcard.com/report/github.com/vbsw/go-experimental/a02)
 
 ## About
-Package a02 tries to combine Packages a02a and a02b, but fails not compile. This is expected behaviour. Package a02 is published on <https://github.com/vbsw/go-experimental/a02>.
+Package a02 tries to combine Packages a02a and a02b, but fails to compile. This is expected behaviour. Package a02 is published on <https://github.com/vbsw/go-experimental/a02>.
 
 ## Copying
 This is free and unencumbered software released into the public domain.
