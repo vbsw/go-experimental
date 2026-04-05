@@ -34,10 +34,10 @@ For more information, please refer to <http://unlicense.org>
 ## Compile
 This package needs Cgo to compile and Cgo needs a C compiler.
 
-Linux:__
+**Linux**  
 For Cgo install GCC, or configure another compiler like clang (see <https://stackoverflow.com/questions/44856124/can-i-change-default-compiler-used-by-cgo>).
 
-Windows:__
+**Windows**  
 For Cgo install tdm-gcc (<https://jmeubank.github.io/tdm-gcc/>), or some other with Go ABI compatible compiler like MinGW-w64.
 
 ## References
