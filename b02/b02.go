@@ -27,11 +27,14 @@
 package b02
 
 // #include <stdlib.h>
+// #include <string.h>
 import "C"
 import "unsafe"
 
 func allocCInt(length int) unsafe.Pointer {
-	ptr := C.malloc(C.size_t(length) * C.size_t(unsafe.Sizeof(C.uint(0))))
+	size := C.size_t(length) * C.size_t(unsafe.Sizeof(C.uint(0)))
+	ptr := C.malloc(size)
+	C.memset(ptr, 0, size)
 	return ptr
 }
 
