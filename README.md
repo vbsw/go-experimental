@@ -8,6 +8,7 @@ go-experimental is a collection of experiments with Go. It is published on <http
 
 **b01** - binary search benchmark  
 **b02** - calls from Go into C and from C into Go benchmark (needs Cgo)  
+**b03** - simple wildcard string matching benchmark (needs Cgo)  
 
 ## References
 - https://go.dev/doc/install
