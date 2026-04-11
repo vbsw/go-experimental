@@ -153,6 +153,29 @@ func BenchmarkIsMatchStrStr(b *testing.B) {
 	}
 }
 
+func BenchmarkIsMatchClosures(b *testing.B) {
+	result, str := true, "abcdefghijklmnopqrstuvwxyz"
+	pA, pB, pC := ("*"), ("*asdf"), ("asdf*")
+	pD, pE := ("abcdefghijklmnopqr*"), ("*jklmnopqrstuvwxyz")
+	pF, pG := ("*fghijklmnopqrst*"), ("*fghijklmnopqrst")
+	pH := ("*efghijklm?opqrstuvwxyz")
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		result = result && (isMatchClosures(pA, str) == true)
+		result = result && (isMatchClosures(pB, str) == false)
+		result = result && (isMatchClosures(pC, str) == false)
+		result = result && (isMatchClosures(pD, str) == true)
+		result = result && (isMatchClosures(pE, str) == true)
+		result = result && (isMatchClosures(pF, str) == true)
+		result = result && (isMatchClosures(pG, str) == false)
+		result = result && (isMatchClosures(pH, str) == true)
+	}
+	b.StopTimer()
+	if !result {
+		b.Fatal("wrong result")
+	}
+}
+
 func BenchmarkIsMatchC(b *testing.B) {
 	result, str := true, "abcdefghijklmnopqrstuvwxyz"
 	pA, pB, pC := ("*"), ("*asdf"), ("asdf*")

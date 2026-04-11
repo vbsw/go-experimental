@@ -28,6 +28,7 @@ package b03
 
 // void is_match(const void*,int,const void*,int,int*);
 import "C"
+import "unsafe"
 
 type tState int
 
@@ -285,4 +286,110 @@ func isMatchStrStr(pattern, str string) bool {
 		}
 	}
 	return true
+}
+
+func isMatchClosures(pattern, str string) bool {
+	if len(str) > 0 {
+		if len(pattern) > 0 {
+			var matchFunc [4]func(byte, byte) (bool, bool)
+			i, j, state := 0, 0, none
+			matchFunc[0] = func(p, s byte) (bool, bool) {
+				if p == '*' {
+					i, state = i+1, skipping
+				} else if p == '?' {
+					i, j = i+1, j+1
+				} else if p == '\\' {
+					if i+1 == len(pattern) {
+						return p == s && j+1 == len(str), true
+					} else {
+						i, state = i+1, escape
+					}
+				} else if p != s {
+					return false, true
+				} else {
+					i, j = i+1, j+1
+				}
+				return false, false
+			}
+			matchFunc[1] = func(p, s byte) (bool, bool) {
+				if p == '*' {
+					i++
+				} else if p == '\\' {
+					if i+1 == len(pattern) {
+						return p == s && j+1 == len(str), true
+					} else {
+						i, state = i+1, skippingEscape
+					}
+				} else if p == '?' {
+					i, j = i+1, j+1
+				} else if p != s {
+					j++
+				} else {
+					i, j, state = i+1, j+1, none
+				}
+				return false, false
+			}
+			matchFunc[2] = func(p, s byte) (bool, bool) {
+				if p == s {
+					i, j, state = i+1, j+1, none
+				} else {
+					j++
+				}
+				return false, false
+			}
+			matchFunc[3] = func(p, s byte) (bool, bool) {
+				if p == s {
+					i, j, state = i+1, j+1, none
+					return false, false
+				}
+				return false, true
+			}
+			for i < len(pattern) && j < len(str) {
+				p, s := pattern[i], str[j]
+				if ret, ok := matchFunc[state](p, s); ok {
+					return ret
+				}
+			}
+			if i == len(pattern) {
+				if j == len(str) {
+					return true
+				} else {
+					return state == skipping
+				}
+			} else {
+				if j == len(str) && pattern[i-1] != '\\' {
+					for ; i < len(pattern); i++ {
+						if pattern[i] != '*' {
+							return false
+						}
+					}
+				} else {
+					return false
+				}
+			}
+		} else {
+			return false
+		}
+	} else if len(pattern) > 0 {
+		for _, b := range pattern {
+			if b != '*' {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func isMatchC(pattern, str string) bool {
+	var returnValue C.int
+	ppattern := unsafe.Pointer(unsafe.StringData(pattern))
+	pstr := unsafe.Pointer(unsafe.StringData(str))
+	C.is_match(ppattern, C.int(len(pattern)), pstr, C.int(len(str)), &returnValue)
+	return returnValue != 0
+}
+
+func isMatchCNoLoad(pattern, str string) bool {
+	var returnValue C.int
+	C.is_match(nil, 0, nil, 0, &returnValue)
+	return returnValue != 0
 }
