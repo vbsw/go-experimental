@@ -41,17 +41,16 @@ For Cgo install GCC, or configure another compiler like clang (see <https://stac
 For Cgo install tdm-gcc (<https://jmeubank.github.io/tdm-gcc/>), or some other Go ABI compatible compiler like MinGW-w64.
 
 ## Execute
-Default size is 10. (size decides the load per function call.)
+Runs with size=10 (default). (size is the load per function call. Use -benchtime=1x, otherwise wrong result.)
 
-	go test -bench=.
+	go test -bench=. -benchtime=1x
 
-Custom size N must be greater than 0.
+Custom size N must be greater than 0. (Use -benchtime=1x, otherwise wrong result.)
 
-	go test -bench=. -args -size=N
+	go test -bench=. -benchtime=1x -args -size=N
 
 ## References
 - https://go.dev/doc/install
 - https://jmeubank.github.io/tdm-gcc/
 - https://github.com/go101/go101/wiki/CGO-Environment-Setup
 - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-

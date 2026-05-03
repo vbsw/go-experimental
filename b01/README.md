@@ -30,3 +30,13 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org>
+
+## Execute
+
+run benchmarks (Use -benchtime=1x, otherwise wrong result.)
+
+	go test -bench=. -benchtime=1x
+
+## References
+- https://go.dev/doc/install
+- https://pkg.go.dev/path/filepath
