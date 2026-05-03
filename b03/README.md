@@ -46,7 +46,7 @@ run tests
 
 	go test
 
-run benchmarks (Use -benchtime=1x, otherwise wrong result.)
+run benchmarks (use -benchtime=1x, otherwise wrong result)
 
 	go test -bench=. -benchtime=1x
 

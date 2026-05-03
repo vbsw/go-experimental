@@ -45,7 +45,7 @@ Runs with size=10 (default). (size is the load per function call. Use -benchtime
 
 	go test -bench=. -benchtime=1x
 
-Custom size N must be greater than 0. (Use -benchtime=1x, otherwise wrong result.)
+Custom size N must be greater than 0. (use -benchtime=1x, otherwise wrong result)
 
 	go test -bench=. -benchtime=1x -args -size=N
 

@@ -33,10 +33,9 @@ For more information, please refer to <http://unlicense.org>
 
 ## Execute
 
-run benchmarks (Use -benchtime=1x, otherwise wrong result.)
+run benchmarks (use -benchtime=1x, otherwise wrong result)
 
 	go test -bench=. -benchtime=1x
 
 ## References
 - https://go.dev/doc/install
-- https://pkg.go.dev/path/filepath
